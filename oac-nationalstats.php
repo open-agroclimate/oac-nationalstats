@@ -142,7 +142,7 @@ ENDTABS;
 		$regex = get_shortcode_regex();
 		preg_match('/'.$regex.'/s', $post->post_content, $matches);
 		if ((isset( $matches[2])) && ($matches[2] == 'oac_nationalstats')) {
-			wp_enqueue_style ( 'oacbase' );
+			wp_enqueue_style( 'oacnationalstats', plugins_url( 'css/oac-nationalstats.css', __FILE__ ), array( 'oacbase' ) );
 			wp_register_script( 'oac_nationalstats', plugins_url( 'js/oac-nationalstats.js', __FILE__ ),
 				array( 'oac-base', 'mootools-array-math', 'oac-linechart' )
 			);
