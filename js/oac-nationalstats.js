@@ -78,7 +78,6 @@ var OACNationalStats = new Class({
 		this.graph.options.max = data.max();
 		this.graph.options.min = 0;
 		this.graph.redraw( data, true, years );
-		console.log(this.graph);
 	}
 });
 
