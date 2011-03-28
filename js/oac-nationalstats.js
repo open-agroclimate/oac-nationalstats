@@ -30,7 +30,10 @@ var OACNationalStats = new Class({
                 var target = this.options.element.getElementById('commodity-container');
 				target.empty().adopt( res );
 				target.getElementById('commodity').addEvent( 'change', this.bound.graphReq );
-				this.options.element.getElements('input[name="practice"]').addEvent( 'change', this.bound.graphReq );
+				this.options.element.getElements('input[name="practice"]').addEvents({
+					'change': this.bound.graphReq,
+					'click' : function() { this.blur(); } 
+				});
                 this.bound.graphReq(); }.bind(this),
             onFailure: function() { alert( 'There was an error fetching the data' ); }
         });
