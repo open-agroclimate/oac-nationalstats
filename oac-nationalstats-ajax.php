@@ -34,21 +34,23 @@ class OACNationalStatsAjax {
     // EX: SELECT  `commodity_id`, `commodity` FROM `commodity_data`,`location_py` WHERE (`location_py`.`location_id` = `commodity_data`.`location_id`) AND (`commodity_data`.`type` = 'fruits') AND (`location_py`.`oac_scope_location_id` = '0') AND (`commodity_data`.`v_value` IS NOT NULL) GROUP BY `commodity_data`.`commodity` HAVING( COUNT(`commodity_data`.`v_value`) > 3) ORDER BY `commodity` ASC 
     $query = "SELECT  `commodity_id`, `commodity` FROM `commodity_data`,`location_py` WHERE (`location_py`.`location_id` = `commodity_data`.`location_id`) AND (`commodity_data`.`type` = %s) AND (`location_py`.`oac_scope_location_id` = %s) AND (`commodity_data`.`v_value` IS NOT NULL) GROUP BY `commodity_data`.`commodity` HAVING( COUNT(`commodity_data`.`v_value`) > %d) ORDER BY `commodity` ASC";
     $results = $wpdb->get_results( $wpdb->prepare( $query, $args ), ARRAY_A );
-    if( count( $results ) == 0 ) return __( 'No commodities found. Please choose another product type.' );
-    $return = '<select name="commodity" id="commodity" class="oac-input oac-select">';
+    if( count( $results ) == 0 ) return __( 'No commodities found. Please choose another product type.', 'oac_nationalstats' );
+    $return  = '<label for="commodity">'.__( 'Commodity', 'oac_nationalstats' ).'</label>';  
+    $return .= '<select name="commodity" id="commodity" class="oac-input oac-select">';
     foreach( $results as $row ) {
           $return .= '<option value="'.$row['commodity_id'].'">'.$row['commodity'].'</option>';
     }
-    $return .= '</select>';
+    $return .= '</select><ul id="practice-select">';
     switch( $type ) {
 		case 'row_crop':
-			$return .= '<input type="radio" name="practice" value="yield" '.( $type == 'row_crop' ? 'checked' : '' ).'>'.__( 'Yield' );	
+			$return .= '<li><input type="radio" name="practice" value="yield" '.( $type == 'row_crop' ? 'checked' : '' ).'>'.__( 'Yield', 'oac_nationalstats' ).'</li>';	
 		case 'fruits':
-			$return .= '<input type="radio" name="practice" value="planted" '.( $type == 'fruits' ? 'checked' : '' ).'>'.__( 'Planted Area' );
+			$return .= '<li><input type="radio" name="practice" value="planted" '.( $type == 'fruits' ? 'checked' : '' ).'>'.__( 'Planted Area', 'oac_nationalstats' ).'</li>';
 		case 'livestock':
-			$return .= '<input type="radio" name="practice" value="production" '.( $type == 'livestock' ? 'checked' : '' ).'>'.__( 'Production' );
+			$return .= '<li><input type="radio" name="practice" value="production" '.( $type == 'livestock' ? 'checked' : '' ).'>'.__( 'Production', 'oac_nationalstats' ).'</li>';
 			break;
     }
+    $return .= '</ul>';
     return $return;
   }
   
@@ -65,9 +67,7 @@ class OACNationalStatsAjax {
 	    $years[] = $row['yyyy'];
 	    $enso[]  = intval( $row['enso_id'] );
     }
-    return array( 'data' => $data, 'years' => $years, 'enso' => $enso );
+    return array( 'data' => $data, 'years' => $years, 'enso' => $enso, 'xlabel' => __( 'Years', 'oac_nationalstats' ) );
   }
 }
-
-
 ?>
