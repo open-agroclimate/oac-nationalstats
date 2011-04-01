@@ -28,7 +28,7 @@ if( $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest" ) {
 }
 
 class OACNationalStatsAjax {
-  public static function generateCommodityList( $type, $location, $threshold=5 ) {
+  public static function generateCommodityList( $type, $location, $threshold=7 ) {
     global $wpdb;    
     $args = array( $type, $location, $threshold );
     // EX: SELECT  `commodity_id`, `commodity` FROM `commodity_data`,`location_py` WHERE (`location_py`.`location_id` = `commodity_data`.`location_id`) AND (`commodity_data`.`type` = 'fruits') AND (`location_py`.`oac_scope_location_id` = '0') AND (`commodity_data`.`v_value` IS NOT NULL) GROUP BY `commodity_data`.`commodity` HAVING( COUNT(`commodity_data`.`v_value`) > 3) ORDER BY `commodity` ASC 
@@ -59,7 +59,8 @@ class OACNationalStatsAjax {
     $args = array( $type, $location, $crop, $practice );
     // EX: SELECT `commodity_data`.`v_value`, `commodity_data`.`yyyy`, `year_classification`.`enso_id` FROM `commodity_data`, `year_classification` WHERE (`commodity_data`.`location_id` = 1) AND (`commodity_data`.`commodity_id` = 1) AND (`commodity_data`.`type` = 'fruits') AND (`commodity_data`.`practice` = 'planted' ) AND (`commodity_data`.`yyyy` = `year_classification`.`yyyy`) ORDER BY `commodity_data`.`yyyy` ASC
     $query = "SELECT `commodity_data`.`v_value`, `commodity_data`.`yyyy`, `year_classification`.`enso_id` FROM `commodity_data`, `year_classification`, `location_py` WHERE (`location_py`.`location_id` = `commodity_data`.`location_id` ) AND ( `commodity_data`.`type` = %s ) AND ( `location_py`.`oac_scope_location_id` = %s ) AND ( `commodity_data`.`commodity_id` = %d ) AND ( `commodity_data`.`practice` = %s ) AND ( `commodity_data`.`yyyy` = `year_classification`.`yyyy` ) ORDER BY `commodity_data`.`yyyy` ASC";
-    $results = $wpdb->get_results( $wpdb->prepare( $query, $args ), ARRAY_A );
+    $prep  = $wpdb->prepare( $query, $args );
+    $results = $wpdb->get_results( $prep, ARRAY_A );
     $data = $years = $enso = array();
     if( count( $results ) == 0 ) return array( 'data' => $data, 'years' => $years, 'enso' => $enso );
     foreach( $results as $row ) {

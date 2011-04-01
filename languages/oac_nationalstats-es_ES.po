@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open AgroClimate: National Statistics Tool\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-28 13:55-0500\n"
-"PO-Revision-Date: 2011-03-28 14:11-0500\n"
+"POT-Creation-Date: 2011-04-01 09:43-0500\n"
+"PO-Revision-Date: 2011-04-01 09:43-0500\n"
 "Last-Translator: Christopher Villalobos <cvillalobos@ufl.edu>\n"
 "Language-Team: Open AgroClimate Project <open@agroclimate.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Área Plantada"
 msgid "Production"
 msgstr "Producción"
 
-#: ../oac-nationalstats-ajax.php:70
+#: ../oac-nationalstats-ajax.php:71
 msgid "Years"
 msgstr "Años"
 
@@ -48,11 +48,11 @@ msgstr ""
 
 #: ../oac-nationalstats.php:24
 msgid "National Statistics Tool"
-msgstr "Estadísticas de Cultivos"
+msgstr "Rendimiento de Cultivos"
 
 #: ../oac-nationalstats.php:31
 msgid "National Statistics Tool Settings"
-msgstr "Ajustes de Estadísticas de Cultivos"
+msgstr "Ajustes de Rendimiento de Cultivos"
 
 #: ../oac-nationalstats.php:69
 msgid "Product Type"
