@@ -63,7 +63,7 @@ class OACNationalStats {
 
 
     public static function ui_panel()    {
-        $output =    '<div id="nationalstats-ui-container" class="oac-ui-container">';
+        $output =  '<div id="nationalstats-ui-container" class="oac-ui-container">';
         $output .= '<div id="oac-user-input-panel" class="oac-user-input">';
         $output .= self::$location_scope->generateNestedDDL( '', true );
         $output .= '<div id="type-container"><label for="type">'.__( 'Product Type', 'oac_nationalstats' ).'</label>';
@@ -93,7 +93,7 @@ class OACNationalStats {
         if ((isset( $matches[2])) && ($matches[2] == 'oac_nationalstats')) {
             wp_enqueue_style( 'oacnationalstats', plugins_url( 'css/oac-nationalstats.css', __FILE__ ), array( 'oacbase' ) );
             wp_register_script( 'oac_nationalstats', plugins_url( 'js/oac-nationalstats.js', __FILE__ ),
-                array( 'oac-base', 'mootools-array-math', 'oac-linechart', 'grdot' )
+                array( 'oac-base-old', 'mootools-array-math', 'oac-linechart', 'grdot-old' )
             );
             wp_enqueue_script( 'oac_nationalstats' );
             add_action( 'wp_head', array( 'OACBase', 'ie_conditionals' ), 3 );

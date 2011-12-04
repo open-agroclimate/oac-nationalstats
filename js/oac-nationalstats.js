@@ -32,7 +32,7 @@
         for( var i=0, l = cleaned.length, offset=0, d; i < l; i++ ) {
             if( typeOf(cleaned[i]) === 'array' ) {
                 if( cleaned[i].length > 1 ) {
-                    charts.push(this.paper.g.linechart(x+(offset*kx),y,((cleaned[i].length-1)*kx)+this.options.chartOptions.gutter*2,h,[].range(0, cleaned[i].length-1), cleaned[i], opts));
+                    charts.push(this.paper.g.linechart(x+(offset*kx),y,((cleaned[i].length-1)*kx)+this.options.chartOptions.gutter*2,h,[].range(0,cleaned[i].length-1), cleaned[i], opts));
                 } else {
                     charts.push(d = this.paper.g.dotchart(x+((offset+1)*kx)-10,y+this.options.chartOptions.vgutter/2, 10,h,[0,1,2], [0,cleaned[i][0], max], [0,cleaned[i][0],0], {max:5, colors: opts.colors}));
                     this.paper.path('M'+d.series[0].attrs.cx+' '+(d.series[0].attrs.cy+2.5)+' L'+d.series[0].attrs.cx+' '+(y+h-this.options.chartOptions.vgutter)).attr({'stroke-width': 2, 'stroke':opts.colors[0]}) ;
